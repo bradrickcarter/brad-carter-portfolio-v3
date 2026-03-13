@@ -1,0 +1,121 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e1e 0%, #2ec0c6 100%);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Dark scrollbars for the code editor */
+.code-editor::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.code-editor::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+.code-editor::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 3px;
+}
+.code-editor::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Dark scrollbars for the preview panel */
+.preview-content::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.preview-content::-webkit-scrollbar-track {
+  background: #161616;
+}
+.preview-content::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+.preview-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  border: none;
+  transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Primary — filled */
+.btn-primary {
+  background: #e8e8e8;
+  color: #111;
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  background: #fff;
+}
+.btn-primary:active {
+  background: #ccc;
+}
+.btn-primary:focus-visible {
+  outline: 2px solid #d4a96a;
+  outline-offset: 3px;
+}
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  background: #3a3a3a;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Secondary — ghost */
+.btn-secondary {
+  background: transparent;
+  color: #888;
+  border: 1px solid #333;
+  font-weight: 500;
+}
+.btn-secondary:hover {
+  border-color: #666;
+  color: #ccc;
+}
+.btn-secondary:active {
+  border-color: #888;
+  color: #e8e8e8;
+  background: rgba(255,255,255,0.04);
+}
+.btn-secondary:focus-visible {
+  outline: 2px solid #d4a96a;
+  outline-offset: 3px;
+}
+.btn-secondary:disabled,
+.btn-secondary[aria-disabled="true"] {
+  border-color: #2a2a2a;
+  color: #444;
+  cursor: not-allowed;
+}
