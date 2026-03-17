@@ -1,13 +1,53 @@
 import { T } from "../data/typography";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useIsMobile from "../hooks/useIsMobile";
+
+// ─── VideoPlayer ──────────────────────────────────────────────────────────────
+function VideoPlayer({ src, mediaH, animating, containerRef, showControls }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const el = containerRef?.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [containerRef]);
+
+  return (
+    <video
+      ref={videoRef}
+      key={src}
+      src={src}
+      loop
+      muted
+      playsInline
+      preload="auto"
+      controls={showControls}
+      style={{ width: "100%", height: mediaH, objectFit: "cover", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
+    />
+  );
+}
 
 // ─── MediaGallery ─────────────────────────────────────────────────────────────
 function MediaGallery({ media }) {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [hovering, setHovering] = useState(false);
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(1024);
+  const containerRef = useRef(null);
   if (!media || media.length === 0) return null;
 
   const mediaH = isMobile ? 240 : isNarrow ? 420 : 690;
@@ -23,19 +63,23 @@ function MediaGallery({ media }) {
 
   const current = media[active];
   return (
-    <div style={{ borderBottom: "1px solid #2a2a2a" }}>
+    <div
+      ref={containerRef}
+      style={{ borderBottom: "1px solid #2a2a2a" }}
+    >
       {/* Main display */}
-      <div style={{ position: "relative", overflow: "hidden", background: "#0e0e0e" }}>
+      <div
+        style={{ position: "relative", overflow: "hidden", background: "#0e0e0e" }}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+      >
         {current.type === "video" ? (
-          <video
-            key={current.src}
+          <VideoPlayer
             src={current.src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            style={{ width: "100%", height: mediaH, objectFit: "cover", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
+            mediaH={mediaH}
+            animating={animating}
+            containerRef={containerRef}
+            showControls={hovering}
           />
         ) : (
           <img
@@ -44,7 +88,7 @@ function MediaGallery({ media }) {
             style={{ width: "100%", height: current.fit === "contain" ? "auto" : mediaH, objectFit: current.fit || "cover", objectPosition: current.position || "center", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
           />
         )}
-        {current.label && (
+        {current.label && !hovering && (
           <div style={{
             position: "absolute",
             bottom: 16,
