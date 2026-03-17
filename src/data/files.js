@@ -23,12 +23,12 @@ export const FILES = {
       [""],
       ["typ", "## Status"],
       [""],
-      ["pct", "Open to work — DFW area"],
+      ["pct", "Open to work — DFW area & remote"],
     ]
   },
   about: {
     name: "about.js", lang: "JavaScript", ext: "JS", extColor: "#e5c07b",
-    url: "bradcarter.design/about",
+    url: "about/bradcarter",
     lines: [
       ["cmt", "// about.js — Brad Carter, Senior Product Designer"],
       ["cmt", "// DFW, TX · brad@bradcarter.design"],
@@ -43,8 +43,9 @@ export const FILES = {
       ["str", '    "Product Design"', "pct", ","],
       ["str", '    "Design Systems"', "pct", ","],
       ["str", '    "Figma"', "pct", ","],
-      ["str", '    "UX Research"', "pct", ","],
+      ["str", '    "UX Strategy"', "pct", ","],
       ["str", '    "HTML / CSS / JS"', "pct", ","],
+      ["str", '    "Claude Code"', "pct", ","],
       ["pct", "  ],"],
       ["pct", "};"],
       [""],
@@ -74,7 +75,7 @@ export const FILES = {
   },
   contact: {
     name: "contact.ts", lang: "TypeScript", ext: "TS", extColor: "#61afef",
-    url: "bradcarter.design/contact",
+    url: "contact",
     lines: [
       ["cmt", "// contact.ts"],
       [""],
@@ -92,7 +93,7 @@ export const FILES = {
   },
   resume: {
     name: "resume.pdf", lang: "PDF", ext: "PDF", extColor: "#e06c75",
-    url: "bradcarter.design/resume",
+    url: "resume/bradcarter",
     lines: [
       ["cmt", "// resume.pdf — Brad Carter"],
       ["cmt", "// Senior Product Designer · DFW, TX"],
@@ -122,7 +123,7 @@ export const FILES = {
   },
   config: {
     name: "config.json", lang: "JSON", ext: "{ }", extColor: "#98c379",
-    url: "bradcarter.design/config",
+    url: "config",
     lines: [
       ["pct", "{"],
       ["cmt", '  // Brad Carter — configuration'],
@@ -147,7 +148,7 @@ export const FILES = {
   },
   readme: {
     name: "README.md", lang: "Markdown", ext: "MD", extColor: "#abb2bf",
-    url: "bradcarter.design/readme",
+    url: "readme",
     lines: [
       ["typ", "# Brad Carter"],
       [""],
@@ -178,7 +179,7 @@ export const FILES = {
   },
   env: {
     name: ".env", lang: "Shell Script", ext: "ENV", extColor: "#e06c75",
-    url: "bradcarter.design/.env",
+    url: ".env",
     lines: [
       ["cmt", "# Brad Carter — environment variables"],
       ["cmt", "# Do not commit to corporate template"],

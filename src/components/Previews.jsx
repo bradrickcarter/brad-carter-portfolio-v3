@@ -131,7 +131,7 @@ export function HomePreviewV1({ openFile }) {
         <div style={{ padding: "32px 40px 36px 52px" }}>
           <span style={{ ...T.label, color: "#555", display: "block", marginBottom: 12 }}>About</span>
           <p style={{ fontSize: 15, lineHeight: 1.4, color: "#777", maxWidth: "52ch" }}>
-            I started as a <strong style={{ color: "#e8e8e8", fontWeight: 700 }}>software engineer</strong> and crossed over into design — which means I can read the code, prototype in it, and ship alongside engineers without a handoff. For 15+ years I've been digging into messy operational problems in healthcare, retail, and financial services. I work in Claude Code and Cursor daily.
+            I started as a <strong style={{ color: "#e8e8e8", fontWeight: 700 }}>software engineer</strong> and crossed over into design — which means I can read the code, prototype in it, and ship alongside engineers without a handoff. For 15+ years I've been digging into messy design problems in healthcare, retail, and financial services. I work in Claude Code and Cursor daily.
           </p>
           <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
             <button className="btn btn-primary" style={{ fontFamily: T.mono }} onClick={() => openFile?.("work")}>See the work →</button>
@@ -399,7 +399,7 @@ export function HomePreview({ openFile }) {
         <div style={{ padding: isMobile ? "24px 20px" : "32px 40px 36px 52px" }}>
           <span style={{ ...T.label, color: "#555", display: "block", marginBottom: 12 }}>About</span>
           <p style={{ fontSize: 15, lineHeight: 1.4, color: "#777", maxWidth: "52ch" }}>
-            I started as a <strong style={{ color: "#e8e8e8", fontWeight: 700 }}>software engineer</strong> and crossed over into design — which means I can read the code, prototype in it, and ship alongside engineers without a handoff. For 15+ years I've been digging into messy operational problems in healthcare, retail, and financial services. I work in Claude Code and Cursor daily.
+            I started as a <strong style={{ color: "#e8e8e8", fontWeight: 700 }}>software engineer</strong> and crossed over into design — which means I can read the code, prototype in it, and ship alongside engineers without a handoff. For 15+ years I've been digging into messy design problems in healthcare, retail, and financial services. I work in Claude Code and Cursor daily.
           </p>
           <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
             <button className="btn btn-primary" style={{ fontFamily: T.mono }} onClick={() => openFile?.("work")}>See the work →</button>
@@ -531,7 +531,7 @@ export function ContactPreview() {
       ))}
       <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px 18px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 8, fontSize: 15, fontWeight: 600, color: "#15803d", marginTop: 4 }}>
         <span style={{ width: 8, height: 8, background: "#22c55e", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
-        Open to Work — DFW Area
+        Open to Work — DFW Area & Remote
       </div>
     </div>
   );
