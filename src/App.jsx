@@ -26,6 +26,7 @@ export default function App() {
     return DEFAULT_TABS.includes(initial) ? DEFAULT_TABS : [initial, ...DEFAULT_TABS];
   });
   const codeRef = useRef(null);
+  const previewRef = useRef(null);
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(1024);
 
@@ -36,6 +37,10 @@ export default function App() {
   useEffect(() => {
     if (codeRef.current) codeRef.current.scrollTop = codeRef.current.scrollHeight;
   }, [lines]);
+
+  useEffect(() => {
+    if (activeFile === "about" && previewRef.current) previewRef.current.scrollTop = 0;
+  }, [activeFile]);
 
   useEffect(() => {
     function onPopState() {
@@ -318,7 +323,7 @@ export default function App() {
                 </div>
 
                 {/* Preview content */}
-                <div className="preview-content" style={{ flex: 1, overflowY: "auto" }}>
+                <div ref={previewRef} className="preview-content" style={{ flex: 1, overflowY: "auto" }}>
                   {Object.entries(PREVIEW_MAP).map(([key, Comp]) => (
                     <div key={key} style={{ display: key === activeFile ? "block" : "none", height: "100%" }}>
                       <Comp openFile={openFile} />
