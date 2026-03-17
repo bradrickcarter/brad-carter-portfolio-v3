@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<style>
+  .b { fill:#cf5f38; stroke:#7a2e0c; stroke-width:1; }
+  .s { fill:#1e1e1e; stroke:#7a2e0c; stroke-width:1; }
+  .d { fill:#1a1a1a; stroke:none; }
+</style>
+
+<rect width="64" height="64" fill="#1e1e1e"/>
+
+<!-- outer box shadow -->
+<rect class="s" x="8" y="8" width="52" height="52" rx="4"/>
+<!-- outer box main -->
+<rect class="b" x="6" y="6" width="52" height="52" rx="4"/>
+
+<!-- title bar -->
+<rect class="d" x="10" y="10" width="44" height="12"/>
+
+<!-- three dots -->
+<rect fill="#cf5f38" stroke="none" x="13" y="13" width="4" height="4" rx="1"/>
+<rect fill="#7a2e0c" stroke="none" x="20" y="13" width="4" height="4" rx="1"/>
+<rect fill="#7a2e0c" stroke="none" x="27" y="13" width="4" height="4" rx="1"/>
+
+<!-- left content block -->
+<rect class="d" x="10" y="26" width="20" height="16"/>
+
+<!-- right content lines -->
+<rect class="d" x="34" y="26" width="20" height="5"/>
+<rect class="d" x="34" y="34" width="14" height="5"/>
+
+<!-- bottom bar -->
+<rect class="d" x="10" y="46" width="44" height="6"/>
+
+</svg>
