@@ -468,6 +468,9 @@ export function WorkPreview() {
       { type: "video", src: "/health-insights.mp4", label: "Lab Insights — Test Detail" },
       { type: "image", src: "/health-insights-figma.png", label: "Health Insights — Figma", position: "top" },
     ]},
+    { tag: "Mobile · Patient UX", tagColor: "#56b6c2", title: "Digital Medicine Cabinet", desc: "Medication management flow for a patient mobile app. Surfaced prescription status, side effects, and pharmacy information in a single view — with guided remove and restore flows to reduce medication errors.", role: "Lead Designer", media: [
+      { type: "video", src: "/manage-medications.mp4", label: "Manage Medications" },
+    ]},
     { tag: "Healthcare · Inventory", tagColor: "#d4a96a", title: "AllyIQ", desc: "Real-time inventory platform for retina practices. Replaced disconnected tools, closed billing gaps, and flagged dispensing risks.", role: "Design Lead", media: [
       { type: "image", src: "/ally-placeholder.png" },
     ]},
