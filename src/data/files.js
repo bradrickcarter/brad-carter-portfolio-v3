@@ -11,17 +11,19 @@ export const FILES = {
       ["pct", "15+ years shipping products that feel"],
       ["pct", "obvious in hindsight."],
       [""],
+      ["typ", "## Contact"],
+      [""],
+      ["pct", "- brad@bradcarter.design"],
+      [""],
       ["typ", "## Quick links"],
       [""],
       ["pct", "- about.js    — who I am"],
       ["pct", "- work.ts     — what I've shipped"],
-      ["pct", "- contact.ts  — let's talk"],
       ["pct", "- resume.pdf  — the full story"],
       [""],
       ["typ", "## Status"],
       [""],
       ["pct", "Open to work — DFW area"],
-      ["pct", "Seeking Senior Product Designer roles."],
     ]
   },
   about: {
@@ -37,11 +39,6 @@ export const FILES = {
       ["pct", "  ", "prop", "location", "pct", ": ", "str", '"Dallas, TX"', "pct", ","],
       ["pct", "  ", "prop", "email", "pct", ":    ", "str", '"brad@bradcarter.design"', "pct", ","],
       [""],
-      ["cmt", "  // 15 years making complex things feel obvious"],
-      ["pct", "  ", "prop", "experience", "pct", ": ", "num", "15", "pct", ","],
-      ["pct", "  ", "prop", "shipped", "pct", ":    ", "num", "40", "pct", ","],
-      ["pct", "  ", "prop", "atSlalom", "pct", ":  ", "num", "11", "pct", ","],
-      [""],
       ["pct", "  ", "prop", "skills", "pct", ": ["],
       ["str", '    "Product Design"', "pct", ","],
       ["str", '    "Design Systems"', "pct", ","],
@@ -56,7 +53,7 @@ export const FILES = {
   },
   work: {
     name: "work.ts", lang: "TypeScript", ext: "TS", extColor: "#61afef",
-    url: "bradcarter.design/work",
+    url: "work/selected-projects",
     lines: [
       ["cmt", "// work.ts — Recent Work"],
       [""],
@@ -108,19 +105,9 @@ export const FILES = {
       [""],
       ["pct", "  ", "prop", "experience", "pct", ": ["],
       ["pct", "    {"],
-      ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Principal Consultant"', "pct", ","],
+      ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Senior Product Designer"', "pct", ","],
       ["pct", "      ", "prop", "company", "pct", ": ", "str", '"Slalom"', "pct", ","],
-      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2021 – Present"', "pct", ","],
-      ["pct", "    },"],
-      ["pct", "    {"],
-      ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Solution Architect"', "pct", ","],
-      ["pct", "      ", "prop", "company", "pct", ": ", "str", '"Slalom"', "pct", ","],
-      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2018 – 2021"', "pct", ","],
-      ["pct", "    },"],
-      ["pct", "    {"],
-      ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Sr. Consultant"', "pct", ","],
-      ["pct", "      ", "prop", "company", "pct", ": ", "str", '"Slalom"', "pct", ","],
-      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2015 – 2018"', "pct", ","],
+      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2011 – 2026"', "pct", ","],
       ["pct", "    },"],
       ["pct", "    {"],
       ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Mobile Application Architect"', "pct", ","],
@@ -217,5 +204,5 @@ export const FILES = {
   },
 };
 
-export const DEFAULT_TABS = ["home", "work", "about", "contact", "resume"];
+export const DEFAULT_TABS = ["home", "work", "about", "resume"];
 export const DEFAULT_FILE = "home";

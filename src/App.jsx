@@ -11,9 +11,19 @@ const S = {
   dim: "#4b5563",
 };
 
+const PATH_MAP = { "/": "home", "/work": "work", "/about": "about", "/contact": "contact", "/resume": "resume" };
+const KEY_TO_PATH = { home: "/", work: "/work", about: "/about", contact: "/contact", resume: "/resume" };
+
+function keyFromPath() {
+  return PATH_MAP[window.location.pathname] || DEFAULT_FILE;
+}
+
 export default function App() {
-  const [activeFile, setActiveFile] = useState(DEFAULT_FILE);
-  const [openTabs, setOpenTabs] = useState(DEFAULT_TABS);
+  const [activeFile, setActiveFile] = useState(keyFromPath);
+  const [openTabs, setOpenTabs] = useState(() => {
+    const initial = keyFromPath();
+    return DEFAULT_TABS.includes(initial) ? DEFAULT_TABS : [initial, ...DEFAULT_TABS];
+  });
   const codeRef = useRef(null);
 
   const file = FILES[activeFile] || FILES.about;
@@ -24,7 +34,21 @@ export default function App() {
     if (codeRef.current) codeRef.current.scrollTop = codeRef.current.scrollHeight;
   }, [lines]);
 
+  useEffect(() => {
+    function onPopState() {
+      const key = keyFromPath();
+      setActiveFile(key);
+      setOpenTabs((prev) => (prev.includes(key) ? prev : [...prev, key]));
+    }
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
   function openFile(key) {
+    const path = KEY_TO_PATH[key];
+    if (path && window.location.pathname !== path) {
+      window.history.pushState({ key }, "", path);
+    }
     setActiveFile(key);
     setOpenTabs((prev) => (prev.includes(key) ? prev : [...prev, key]));
   }
@@ -35,7 +59,7 @@ export default function App() {
         width: "100%",
         minHeight: "100vh",
         background: "linear-gradient(135deg, #1E1E1E 0%, #2EC0C6 100%)",
-        padding: "48px 0",
+        padding: "24px 0",
         boxSizing: "border-box",
       }}
     >
@@ -45,7 +69,7 @@ export default function App() {
           width: "100%",
           maxWidth: 1440,
           margin: "0 auto",
-          height: "calc(100vh - 96px)",
+          height: "calc(100vh - 48px)",
           display: "flex",
           flexDirection: "column",
           background: S.bg,
@@ -142,7 +166,7 @@ export default function App() {
             <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
 
               {/* ── Code Editor ── */}
-              <div style={{ flex: 1, display: "flex", overflow: "hidden", background: S.bg, minWidth: 500, maxWidth: 500 }}>
+              <div style={{ flex: 1, display: activeFile === "work" ? "none" : "flex", overflow: "hidden", background: S.bg, minWidth: 500, maxWidth: 500 }}>
                 {/* Line numbers */}
                 <div
                   style={{
@@ -182,7 +206,9 @@ export default function App() {
                       ["contact.ts","contact"],
                       ["resume.pdf","resume"],
                     ].find(([needle]) => lineText.includes(needle));
-                    return <CodeLine key={i} parts={parts} onClick={homeLinks ? () => openFile(homeLinks[1]) : undefined} />;
+                    const isEmail = activeFile === "home" && lineText.includes("brad@bradcarter.design");
+                    const handleClick = homeLinks ? () => openFile(homeLinks[1]) : isEmail ? () => { window.location.href = "mailto:brad@bradcarter.design"; } : undefined;
+                    return <CodeLine key={i} parts={parts} onClick={handleClick} />;
                   })}
                   <span
                     style={{
@@ -237,7 +263,7 @@ export default function App() {
                   flexShrink: 0,
                   cursor: "col-resize",
                   position: "relative",
-                  display: "flex",
+                  display: activeFile === "work" ? "none" : "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
@@ -246,7 +272,7 @@ export default function App() {
               </div>
 
               {/* ── Preview ── */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#161616", overflow: "hidden", margin: 24, borderRadius: "0.75rem", border: "1px solid #111111" }}>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#161616", overflow: "hidden", margin: "24px 24px 0", borderRadius: "0.75rem", border: "1px solid #111111" }}>
                 {/* Preview toolbar */}
                 <div
                   style={{
@@ -283,7 +309,11 @@ export default function App() {
 
                 {/* Preview content */}
                 <div className="preview-content" style={{ flex: 1, overflowY: "auto" }}>
-                  <PreviewComp key={activeFile} openFile={openFile} />
+                  {Object.entries(PREVIEW_MAP).map(([key, Comp]) => (
+                    <div key={key} style={{ display: key === activeFile ? "block" : "none", height: "100%" }}>
+                      <Comp openFile={openFile} />
+                    </div>
+                  ))}
                 </div>
               </div>
 

@@ -1,7 +1,7 @@
 // Typography constants — Butterick's Practical Typography compliant
 // Reference: https://practicaltypography.com/
 // Font: Inter (professional quality)
-// Body: 16px / line-height 1.6 (within 120–145% range)
+// Body: 16px / line-height 1.4 (140% — within 120–145% range)
 // All-caps labels: letterSpacing 0.08em (within 5–12% rule)
 // Paragraph spacing only — no first-line indents (never both)
 // Bold used sparingly; no bold+italic together
@@ -12,8 +12,8 @@
 export const T = {
   font: "'Inter', system-ui, sans-serif",
   mono: "'JetBrains Mono', 'Fira Code', monospace",
-  body: { fontSize: 16, lineHeight: 1.6, color: "#333" },
-  small: { fontSize: 15, lineHeight: 1.6, color: "#555" },
+  body: { fontSize: 16, lineHeight: 1.4, color: "#333" },
+  small: { fontSize: 15, lineHeight: 1.4, color: "#555" },
   label: { fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 600 },
   maxW: "65ch",
   pad: "48px 52px",

@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:practicaltypography.com)"
+      "WebFetch(domain:practicaltypography.com)",
+      "Bash(ls -lh /Users/bradcarter/Documents/work-stuff/find-a-job/portfolio-options/vscode-react/brad-carter-portfolio/public/*.mov /Users/bradcarter/Documents/work-stuff/find-a-job/portfolio-options/vscode-react/brad-carter-portfolio/public/*.png)",
+      "Bash(ls /Users/bradcarter/Documents/work-stuff/find-a-job/portfolio-options/vscode-react/brad-carter-portfolio/public/*.mp4)",
+      "Bash(ls /Users/bradcarter/Documents/work-stuff/find-a-job/portfolio-options/vscode-react/brad-carter-portfolio/public/*.pdf)"
     ]
   }
 }
