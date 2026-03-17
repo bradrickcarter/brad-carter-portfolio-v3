@@ -1,11 +1,18 @@
 import { T } from "../data/typography";
 import { useState, useEffect } from "react";
+import useIsMobile from "../hooks/useIsMobile";
 
 // ─── MediaGallery ─────────────────────────────────────────────────────────────
 function MediaGallery({ media }) {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const isMobile = useIsMobile();
+  const isNarrow = useIsMobile(1024);
   if (!media || media.length === 0) return null;
+
+  const mediaH = isMobile ? 240 : isNarrow ? 420 : 690;
+  const thumbW = isMobile ? 80 : 120;
+  const thumbH = isMobile ? 56 : 80;
 
   function switchTo(i) {
     if (i === active) return;
@@ -28,13 +35,13 @@ function MediaGallery({ media }) {
             muted
             playsInline
             preload="auto"
-            style={{ width: "100%", height: 690, objectFit: "cover", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
+            style={{ width: "100%", height: mediaH, objectFit: "cover", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
           />
         ) : (
           <img
             src={current.src}
             alt={current.alt || ""}
-            style={{ width: "100%", height: current.fit === "contain" ? "auto" : 690, objectFit: current.fit || "cover", objectPosition: current.position || "center", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
+            style={{ width: "100%", height: current.fit === "contain" ? "auto" : mediaH, objectFit: current.fit || "cover", objectPosition: current.position || "center", display: "block", animation: animating ? "media-pop 400ms cubic-bezier(0.34,1.56,0.64,1) forwards" : "none" }}
           />
         )}
         {current.label && (
@@ -66,8 +73,8 @@ function MediaGallery({ media }) {
               key={i}
               onClick={() => switchTo(i)}
               style={{
-                width: 120,
-                height: 80,
+                width: thumbW,
+                height: thumbH,
                 borderRadius: 4,
                 overflow: "hidden",
                 cursor: "pointer",
@@ -158,6 +165,7 @@ let _homeLoaded = false;
 export function HomePreview({ openFile }) {
   const [phase, setPhase] = useState(_homeLoaded ? 2 : 0);
   const [dots, setDots] = useState(1);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (_homeLoaded) return;
@@ -385,25 +393,25 @@ export function HomePreview({ openFile }) {
       </div>
 
       {/* Bottom strip */}
-      <div style={{ borderTop: "1px solid #242424", display: "grid", gridTemplateColumns: "2fr 1px 1fr", opacity: phase === 2 ? 1 : 0, transform: phase === 2 ? "translateY(0)" : "translateY(12px)", transition: "opacity 600ms ease, transform 600ms ease" }}>
+      <div style={{ borderTop: "1px solid #242424", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1px 1fr", opacity: phase === 2 ? 1 : 0, transform: phase === 2 ? "translateY(0)" : "translateY(12px)", transition: "opacity 600ms ease, transform 600ms ease" }}>
 
         {/* Bio */}
-        <div style={{ padding: "32px 40px 36px 52px" }}>
+        <div style={{ padding: isMobile ? "24px 20px" : "32px 40px 36px 52px" }}>
           <span style={{ ...T.label, color: "#555", display: "block", marginBottom: 12 }}>About</span>
           <p style={{ fontSize: 15, lineHeight: 1.4, color: "#777", maxWidth: "52ch" }}>
             I started as a <strong style={{ color: "#e8e8e8", fontWeight: 700 }}>software engineer</strong> and crossed over into design — which means I can read the code, prototype in it, and ship alongside engineers without a handoff. For 15+ years I've been digging into messy operational problems in healthcare, retail, and financial services. I work in Claude Code and Cursor daily.
           </p>
-          <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+          <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
             <button className="btn btn-primary" style={{ fontFamily: T.mono }} onClick={() => openFile?.("work")}>See the work →</button>
             <a href="/Brad-Carter-Resume.pdf" download className="btn btn-secondary" style={{ fontFamily: T.mono }}>Download resume ↓</a>
           </div>
         </div>
 
-        {/* Vertical divider */}
-        <div style={{ background: "#242424" }} />
+        {/* Vertical divider — hidden on mobile */}
+        {!isMobile && <div style={{ background: "#242424" }} />}
 
         {/* Daily tools */}
-        <div style={{ padding: "32px 40px 36px" }}>
+        <div style={{ padding: isMobile ? "0 20px 24px" : "32px 40px 36px" }}>
           <span style={{ ...T.label, color: "#555", display: "block", marginBottom: 12 }}>Daily tools</span>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {["Claude Code", "Cursor", "Figma & Figma Make", "React", "GitHub"].map(tool => (
@@ -422,6 +430,7 @@ export function HomePreview({ openFile }) {
 
 // ─── About ───────────────────────────────────────────────────────────────────
 export function AboutPreview() {
+  const isMobile = useIsMobile();
   const paras = [
     "I've always been drawn to technology — something about having the entire world at your fingertips, the idea that a screen and a little curiosity could take you anywhere. From my early days building HTML websites just for the fun of it to designing product experiences that genuinely make people's lives better, that pull has never gone away.",
     "My path to product design wasn't the typical road most designers take. I studied political science and somehow landed in the tech world selling software training solutions. Then I took an HTML and CSS class and something clicked. Shortly after, the iPhone showed up and that little device completely supercharged my interest in building things. I spent the next five years developing iPhone apps — and somewhere along the way, I realized I was more interested in how people experienced the app than in the code behind it. I wanted to obsess over the thing people actually touched.",
@@ -431,12 +440,12 @@ export function AboutPreview() {
     "Eleven years in, I'm still just trying to build things I'm proud of.",
   ];
   return (
-    <div style={{ padding: T.pad, fontFamily: T.mono, maxWidth: "68ch" }}>
+    <div style={{ padding: isMobile ? "24px 20px" : T.pad, fontFamily: T.mono, maxWidth: "68ch" }}>
       <div style={{ ...T.label, color: "#61afef", marginBottom: 24, fontFamily: T.mono }}>// about.js</div>
       <div style={{ display: "flex", alignItems: "center", gap: 24, marginBottom: 32 }}>
-        <img src="/brad-profile-2.jpg" alt="Brad Carter" style={{ width: 104, height: 104, borderRadius: 6, objectFit: "cover", flexShrink: 0 }} />
+        <img src="/brad-profile-2.jpg" alt="Brad Carter" style={{ width: isMobile ? 72 : 104, height: isMobile ? 72 : 104, borderRadius: 6, objectFit: "cover", flexShrink: 0 }} />
         <div>
-          <h1 style={{ fontSize: 36, fontWeight: 700, color: "#f1f1f1", lineHeight: 1.15, marginBottom: 4 }}>Brad Carter</h1>
+          <h1 style={{ fontSize: isMobile ? 24 : 36, fontWeight: 700, color: "#f1f1f1", lineHeight: 1.15, marginBottom: 4 }}>Brad Carter</h1>
           <p style={{ fontSize: 18, color: "#f1f1f1", fontWeight: 400, lineHeight: 1.2 }}>Senior Product Designer — DFW, TX</p>
         </div>
       </div>
@@ -449,6 +458,7 @@ export function AboutPreview() {
 
 // ─── Work ────────────────────────────────────────────────────────────────────
 export function WorkPreview() {
+  const isMobile = useIsMobile();
   const cards = [
     { tag: "Healthcare · Patient UX", tagColor: "#e5c07b", title: "Heart Failure Care", desc: "Enrolled patient companion inside MyBSWHealth for newly diagnosed heart failure patients. Daily weight and blood pressure tracking with clinical alert thresholds, symptom triage, and a plain-language education library.", role: "Lead Designer", media: [
       { type: "video", src: "/hf-track-weight.mp4", label: "Track Weight" },
@@ -464,7 +474,7 @@ export function WorkPreview() {
   ];
 
   return (
-    <div style={{ padding: "24px 48px", fontFamily: T.mono, background: "#161616", minHeight: "100%", boxSizing: "border-box" }}>
+    <div style={{ padding: isMobile ? "16px 20px" : "24px 48px", fontFamily: T.mono, background: "#161616", minHeight: "100%", boxSizing: "border-box" }}>
       {cards.map((c) => (
         <div
           key={c.title}
@@ -529,10 +539,11 @@ export function ContactPreview() {
 
 // ─── Resume ──────────────────────────────────────────────────────────────────
 export function ResumePreview() {
+  const isMobile = useIsMobile();
   return (
-    <div style={{ padding: T.pad, fontFamily: T.mono, maxWidth: T.maxW, background: "#161616", minHeight: "100%" }}>
+    <div style={{ padding: isMobile ? "24px 20px" : T.pad, fontFamily: T.mono, maxWidth: T.maxW, background: "#161616", minHeight: "100%" }}>
       <div style={{ ...T.label, color: "#e06c75", marginBottom: 16, fontFamily: T.mono }}>// resume.pdf</div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: "#e8e8e8", marginBottom: 4 }}>Brad Carter</h1>
+      <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: "#e8e8e8", marginBottom: 4 }}>Brad Carter</h1>
       <p style={{ fontSize: 16, color: "#aaa", marginBottom: 16, lineHeight: 1.4 }}>Senior Product Designer · DFW, TX</p>
       <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
         {["brad@bradcarter.design", "bradcarter.design", "brad-carter-work"].map((t) => (

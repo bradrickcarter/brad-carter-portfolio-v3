@@ -3,6 +3,7 @@ import { FILES, DEFAULT_TABS, DEFAULT_FILE } from "./data/files";
 import CodeLine from "./components/CodeLine";
 import { PREVIEW_MAP } from "./components/Previews";
 import useTyping from "./hooks/useTyping";
+import useIsMobile from "./hooks/useIsMobile";
 
 const S = {
   bg: "#1e1e1e",
@@ -25,6 +26,8 @@ export default function App() {
     return DEFAULT_TABS.includes(initial) ? DEFAULT_TABS : [initial, ...DEFAULT_TABS];
   });
   const codeRef = useRef(null);
+  const isMobile = useIsMobile();
+  const isNarrow = useIsMobile(1024);
 
   const file = FILES[activeFile] || FILES.about;
   const lines = useTyping(file.lines, [activeFile]);
@@ -59,7 +62,7 @@ export default function App() {
         width: "100%",
         minHeight: "100vh",
         background: "linear-gradient(135deg, #1E1E1E 0%, #2EC0C6 100%)",
-        padding: "24px 0",
+        padding: isMobile ? 0 : "24px 0",
         boxSizing: "border-box",
       }}
     >
@@ -69,15 +72,15 @@ export default function App() {
           width: "100%",
           maxWidth: 1440,
           margin: "0 auto",
-          height: "calc(100vh - 48px)",
+          height: isMobile ? "100svh" : "calc(100vh - 48px)",
           display: "flex",
           flexDirection: "column",
           background: S.bg,
           fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
           overflow: "hidden",
-          borderRadius: "0.75rem",
-          border: "1px solid #111",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)",
+          borderRadius: isMobile ? 0 : "0.75rem",
+          border: isMobile ? "none" : "1px solid #111",
+          boxShadow: isMobile ? "none" : "0 32px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)",
         }}
       >
         {/* ── Title Bar ── */}
@@ -99,18 +102,20 @@ export default function App() {
               <div key={i} style={{ width: 12, height: 12, borderRadius: "50%", background: c }} />
             ))}
           </div>
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)",
-              fontSize: 11.5,
-              color: "#9d9d9d",
-              whiteSpace: "nowrap",
-            }}
-          >
-            brad-carter — product designer
-          </div>
+          {!isMobile && (
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontSize: 11.5,
+                color: "#9d9d9d",
+                whiteSpace: "nowrap",
+              }}
+            >
+              brad-carter — product designer
+            </div>
+          )}
         </div>
 
         {/* ── Body ── */}
@@ -127,7 +132,7 @@ export default function App() {
                 alignItems: "stretch",
                 borderBottom: `1px solid ${S.border}`,
                 flexShrink: 0,
-                overflowX: "auto",
+                overflowX: isMobile ? "hidden" : "auto",
                 overflowY: "hidden",
               }}
             >
@@ -142,6 +147,7 @@ export default function App() {
                     style={{
                       display: "flex",
                       alignItems: "center",
+                      justifyContent: isMobile ? "center" : "flex-start",
                       gap: 7,
                       padding: "0 14px",
                       fontSize: 12,
@@ -151,12 +157,16 @@ export default function App() {
                       borderRight: `1px solid ${S.border}`,
                       borderTop: `1px solid ${active ? "#61afef" : "transparent"}`,
                       background: active ? S.bg : "transparent",
-                      flexShrink: 0,
+                      flexShrink: isMobile ? 1 : 0,
+                      flex: isMobile ? 1 : "none",
+                      minWidth: 0,
                     }}
                   >
-                    <span style={{ color: f.extColor, fontSize: 11, fontWeight: 600 }}>{f.ext}</span>
-                    {f.name}
-                    <span style={{ fontSize: 12, color: "#555", opacity: 0.7 }}>×</span>
+                    {!isMobile && <span style={{ color: f.extColor, fontSize: 11, fontWeight: 600 }}>{f.ext}</span>}
+                    <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {isMobile ? key.charAt(0).toUpperCase() + key.slice(1) : f.name}
+                    </span>
+                    {!isMobile && <span style={{ fontSize: 12, color: "#555", opacity: 0.7 }}>×</span>}
                   </div>
                 );
               })}
@@ -166,7 +176,7 @@ export default function App() {
             <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
 
               {/* ── Code Editor ── */}
-              <div style={{ flex: 1, display: activeFile === "work" ? "none" : "flex", overflow: "hidden", background: S.bg, minWidth: 500, maxWidth: 500 }}>
+              <div style={{ flex: 1, display: (isNarrow || activeFile === "work") ? "none" : "flex", overflow: "hidden", background: S.bg, minWidth: 500, maxWidth: 500 }}>
                 {/* Line numbers */}
                 <div
                   style={{
@@ -263,7 +273,7 @@ export default function App() {
                   flexShrink: 0,
                   cursor: "col-resize",
                   position: "relative",
-                  display: activeFile === "work" ? "none" : "flex",
+                  display: (isNarrow || activeFile === "work") ? "none" : "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
@@ -272,7 +282,7 @@ export default function App() {
               </div>
 
               {/* ── Preview ── */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#161616", overflow: "hidden", margin: "24px 24px 0", borderRadius: "0.75rem", border: "1px solid #111111" }}>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#161616", overflow: "hidden", margin: isMobile ? 0 : "24px 24px 0", borderRadius: isMobile ? 0 : "0.75rem", border: isMobile ? "none" : "1px solid #111111" }}>
                 {/* Preview toolbar */}
                 <div
                   style={{
@@ -340,13 +350,20 @@ export default function App() {
               {t}
             </div>
           ))}
-          <div style={{ marginLeft: "auto", display: "flex" }}>
-            {[file.lang, "UTF-8", "Spaces: 2", "🔔 Open to Work"].map((t) => (
-              <div key={t} style={{ display: "flex", alignItems: "center", padding: "0 8px", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}>
-                {t}
-              </div>
-            ))}
-          </div>
+          {!isMobile && (
+            <div style={{ marginLeft: "auto", display: "flex" }}>
+              {[file.lang, "UTF-8", "Spaces: 2", "🔔 Open to Work"].map((t) => (
+                <div key={t} style={{ display: "flex", alignItems: "center", padding: "0 8px", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}>
+                  {t}
+                </div>
+              ))}
+            </div>
+          )}
+          {isMobile && (
+            <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", padding: "0 8px", opacity: 0.85, whiteSpace: "nowrap" }}>
+              🔔 Open to Work
+            </div>
+          )}
         </div>
 
       </div>

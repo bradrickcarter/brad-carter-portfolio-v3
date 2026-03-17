@@ -64,6 +64,11 @@ body {
   background: #555;
 }
 
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .desktop-only { display: none !important; }
+}
+
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
