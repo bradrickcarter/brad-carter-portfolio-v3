@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typography System — Brad Carter Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      /* Dark theme */
+      --bg:        #1e1e1e;
+      --surface:   #161616;
+      --tab:       #2d2d2d;
+      --chrome:    #323233;
+      --border:    #111111;
+
+      --text-1:    #e8e8e8;
+      --text-1alt: #f1f1f1;
+      --text-2:    #d4d4d4;
+      --text-muted:#d1d5dc;
+      --text-dim:  #aaa;
+      --text-dimmer:#999;
+      --text-faint:#888;
+      --text-off:  #777;
+
+      /* Accent */
+      --gold:   #d4a96a;
+      --blue:   #61afef;
+      --red:    #e06c75;
+      --amber:  #e5c07b;
+      --green:  #98c379;
+      --teal:   #56b6c2;
+      --comment:#abb2bf;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font);
+      background: #f5f5f5;
+      color: #1a1a1a;
+      padding: 40px;
+      line-height: 1.4;
+    }
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .page-header {
+      font-family: var(--mono);
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid #ddd;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .page-header p {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    section { margin-bottom: 64px; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* ── Two-column layout ───────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Specimen card ───────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 28px 32px;
+    }
+    .card.dark {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+    .card-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .card.dark .card-meta { color: #555; }
+
+    /* ── Type specimens ──────────────────────────────────────── */
+    .specimen-display-xl {
+      font-family: var(--mono);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: #1a1a1a;
+    }
+    .specimen-display {
+      font-family: var(--mono);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #1a1a1a;
+    }
+    .specimen-h1 {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #1a1a1a;
+    }
+    .specimen-h1-dark {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+    }
+    .specimen-h2 {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #1a1a1a;
+    }
+    .specimen-h2-dark {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-1);
+    }
+    .specimen-h3 {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #333;
+    }
+    .specimen-h3-dark {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-2);
+    }
+    .specimen-h4 {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #333;
+    }
+    .specimen-h4-dark {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-dim);
+    }
+    .specimen-h5 {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #555;
+    }
+    .specimen-h5-dark {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-faint);
+    }
+    .specimen-body {
+      font-family: var(--mono);
+      font-size: 16px;
+      line-height: 1.4;
+      color: #333;
+      max-width: 65ch;
+    }
+    .specimen-small {
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1.4;
+      color: #555;
+      max-width: 65ch;
+    }
+    .specimen-body-dark {
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--text-muted);
+      max-width: 65ch;
+    }
+    .specimen-body-dark-alt {
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--text-1alt);
+      max-width: 65ch;
+    }
+    .specimen-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .specimen-label-dark {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .specimen-code {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-2);
+    }
+    .specimen-tab {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+    }
+    .specimen-status {
+      font-family: var(--font);
+      font-size: 11px;
+      color: rgba(255,255,255,0.9);
+    }
+    .specimen-title-bar {
+      font-family: var(--font);
+      font-size: 11.5px;
+      color: #9d9d9d;
+    }
+
+    /* ── Color swatches ──────────────────────────────────────── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .swatch {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .swatch-color {
+      height: 56px;
+    }
+    .swatch-info {
+      background: #fff;
+      padding: 8px 10px;
+    }
+    .swatch-name {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .swatch-hex {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    /* ── Tabs ────────────────────────────────────────────────── */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 48px;
+    }
+    .tab-btn {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      color: #888;
+      transition: color 120ms, border-color 120ms;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: #333; }
+    .tab-btn.active { color: #1a1a1a; border-bottom-color: #1a1a1a; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Table ───────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      background: #f0f0f0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      color: #333;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: #f0f0f0;
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Design System</h1>
+    <p>Brad Carter Portfolio · Typography, buttons, spacing, and usage rules</p>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="typography">Typography</button>
+    <button class="tab-btn" data-tab="colors">Colors</button>
+    <button class="tab-btn" data-tab="buttons">Buttons</button>
+    <button class="tab-btn" data-tab="spacing">Spacing</button>
+    <button class="tab-btn" data-tab="rules">Rules</button>
+  </nav>
+
+  <div class="tab-panel active" id="panel-typography">
+
+  <!-- ── Font Families ─────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Font Families</div>
+    <div class="two-col">
+      <div class="card">
+        <div style="font-family:'Inter',system-ui,sans-serif; font-size:28px; font-weight:700; line-height:1.15; color:#1a1a1a;">Inter</div>
+        <div style="font-family:'Inter',system-ui,sans-serif; font-size:16px; line-height:1.4; color:#555; margin-top:8px;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          abcdefghijklmnopqrstuvwxyz<br>
+          0123456789 !@#$%&
+        </div>
+        <div class="card-meta">Token: <code>T.font</code><br>Value: 'Inter', system-ui, sans-serif<br>Usage: UI chrome, labels, status bar</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; line-height:1.15; color:#1a1a1a;">JetBrains Mono</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.4; color:#555; margin-top:8px;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          abcdefghijklmnopqrstuvwxyz<br>
+          0123456789 !@#$%&
+        </div>
+        <div class="card-meta">Token: <code>T.mono</code><br>Value: 'JetBrains Mono', 'Fira Code', monospace<br>Usage: Code editor, all preview panels, body copy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Display ───────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Display</div>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="card">
+        <div class="specimen-display-xl">SHIPS.</div>
+        <div class="card-meta">Display XL · clamp(64px,10vw,120px) · weight 700 · line-height 0.92 · tracking -0.03em · color #1a1a1a<br>Usage: Hero pixel-art text</div>
+      </div>
+      <div class="card">
+        <div class="specimen-display">Design that ships.</div>
+        <div class="card-meta">Display · 36px · weight 700 · line-height 1.15 · tracking -0.02em · color #1a1a1a<br>Usage: Section heroes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Headings ───────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Headings — Light &amp; Dark</div>
+    <div class="two-col">
+      <div>
+        <div style="margin-bottom:8px; font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase;">Light Theme</div>
+        <div class="card" style="display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <div class="specimen-h1">H1 — Brad Carter</div>
+            <div class="card-meta">28px · 700 · line-height 1.15 · tracking -0.01em · #1a1a1a</div>
+          </div>
+          <div>
+            <div class="specimen-h2">H2 — Senior Product Designer</div>
+            <div class="card-meta">18px · 600 · line-height 1.2 · #1a1a1a</div>
+          </div>
+          <div>
+            <div class="specimen-h3">H3 — Experience</div>
+            <div class="card-meta">16px · 600 · line-height 1.4 · #333</div>
+          </div>
+          <div>
+            <div class="specimen-h4">H4 — Senior Product Designer, Slalom</div>
+            <div class="card-meta">14px · 600 · line-height 1.4 · #333</div>
+          </div>
+          <div>
+            <div class="specimen-h5">H5 — 2011 – 2026</div>
+            <div class="card-meta">13px · 600 · line-height 1.4 · #555</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="margin-bottom:8px; font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase;">Dark Theme</div>
+        <div class="card dark" style="display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <div class="specimen-h1-dark">H1 — Brad Carter</div>
+            <div class="card-meta">28px · 700 · line-height 1.15 · tracking -0.01em · #e8e8e8</div>
+          </div>
+          <div>
+            <div class="specimen-h2-dark">H2 — Senior Product Designer</div>
+            <div class="card-meta">18px · 600 · line-height 1.2 · #e8e8e8</div>
+          </div>
+          <div>
+            <div class="specimen-h3-dark">H3 — Experience</div>
+            <div class="card-meta">16px · 600 · line-height 1.4 · #d4d4d4</div>
+          </div>
+          <div>
+            <div class="specimen-h4-dark">H4 — Senior Product Designer, Slalom</div>
+            <div class="card-meta">14px · 600 · line-height 1.4 · #aaa</div>
+          </div>
+          <div>
+            <div class="specimen-h5-dark">H5 — 2011 – 2026</div>
+            <div class="card-meta">13px · 600 · line-height 1.4 · #888</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Body ──────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Body Copy</div>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="two-col">
+        <div class="card">
+          <div class="specimen-body">15+ years turning complex, messy problems into experiences that feel simple in hindsight. Based in Dallas, TX.</div>
+          <div class="card-meta">T.body · 16px · line-height 1.4 · #333 · max-width 65ch<br>Usage: Standard prose on light backgrounds</div>
+        </div>
+        <div class="card">
+          <div class="specimen-small">15+ years turning complex, messy problems into experiences that feel simple in hindsight. Based in Dallas, TX.</div>
+          <div class="card-meta">T.small · 15px · line-height 1.4 · #555 · max-width 65ch<br>Usage: Secondary prose on light backgrounds</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card dark">
+          <div class="specimen-body-dark">15+ years turning complex, messy problems into experiences that feel simple in hindsight. Based in Dallas, TX.</div>
+          <div class="card-meta">Body Dark · 15px · line-height 1.4 · #d1d5dc · max-width 65ch<br>Usage: Work preview, cards on dark bg</div>
+        </div>
+        <div class="card dark">
+          <div class="specimen-body-dark-alt">15+ years turning complex, messy problems into experiences that feel simple in hindsight. Based in Dallas, TX.</div>
+          <div class="card-meta">Body Dark Alt · 15px · line-height 1.4 · #f1f1f1 · max-width 65ch<br>Usage: About preview body text</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UI Labels & Chrome ─────────────────────────────────── -->
+  <section>
+    <div class="section-label">UI Labels &amp; Chrome</div>
+    <div class="two-col">
+      <div class="card">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div class="specimen-label">Section Label</div>
+            <div class="card-meta">T.label · 12px · 600 · tracking 0.08em · uppercase · #888<br>Usage: Preview section headings</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font); font-size:11.5px; color:#9d9d9d;">brad-carter — product designer</div>
+            <div class="card-meta">Title bar · 11.5px · Inter · #9d9d9d<br>Usage: Window title bar</div>
+          </div>
+        </div>
+      </div>
+      <div class="card dark">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div class="specimen-label-dark">Preview</div>
+            <div class="card-meta">Label Dark · 12px · 600 · tracking 0.08em · uppercase · #888</div>
+          </div>
+          <div>
+            <div class="specimen-tab">home.md &nbsp;×&nbsp;&nbsp; work.ts &nbsp;×&nbsp;&nbsp; about.js &nbsp;×</div>
+            <div class="card-meta">Tab label · 12px · JetBrains Mono · #d4d4d4 (active) / #969696 (inactive)</div>
+          </div>
+          <div>
+            <div class="specimen-status">⎇ main &nbsp;&nbsp; ✓ 0 errors &nbsp;&nbsp; TypeScript &nbsp;&nbsp; UTF-8 &nbsp;&nbsp; 🔔 Open to Work</div>
+            <div class="card-meta">Status bar · 11px · Inter · rgba(255,255,255,0.9)</div>
+          </div>
+          <div>
+            <div class="specimen-code">const brad = &#123;<br>&nbsp;&nbsp;title: "Senior Product Designer",<br>&nbsp;&nbsp;location: "Dallas, TX",<br>&#125;;</div>
+            <div class="card-meta">Code editor · 12.5px · JetBrains Mono · #d4d4d4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /panel-typography -->
+
+  <div class="tab-panel" id="panel-colors">
+
+  <!-- ── Color Palette ──────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Color Palette — Dark Theme</div>
+    <div class="swatch-grid" style="margin-bottom:24px;">
+      <div class="swatch"><div class="swatch-color" style="background:#1e1e1e;"></div><div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#1e1e1e</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#161616;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#161616</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#2d2d2d;"></div><div class="swatch-info"><div class="swatch-name">Tab bar</div><div class="swatch-hex">#2d2d2d</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#323233;"></div><div class="swatch-info"><div class="swatch-name">Chrome</div><div class="swatch-hex">#323233</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#f1f1f1; border:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">Text / About</div><div class="swatch-hex">#f1f1f1</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#e8e8e8; border:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">Text Primary</div><div class="swatch-hex">#e8e8e8</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#d4d4d4; border:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">Text Secondary</div><div class="swatch-hex">#d4d4d4</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#d1d5dc; border:1px solid #ddd;"></div><div class="swatch-info"><div class="swatch-name">Text Muted</div><div class="swatch-hex">#d1d5dc</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#aaaaaa;"></div><div class="swatch-info"><div class="swatch-name">Text Dim</div><div class="swatch-hex">#aaa</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#999999;"></div><div class="swatch-info"><div class="swatch-name">Text Dimmer</div><div class="swatch-hex">#999</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#888888;"></div><div class="swatch-info"><div class="swatch-name">Text Faint</div><div class="swatch-hex">#888</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#777777;"></div><div class="swatch-info"><div class="swatch-name">Text Off</div><div class="swatch-hex">#777</div></div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:32px;">Syntax / Accent Colors</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:#d4a96a;"></div><div class="swatch-info"><div class="swatch-name">Gold</div><div class="swatch-hex">#d4a96a · Focus rings</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#61afef;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#61afef · Keywords, TS</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#e06c75;"></div><div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-hex">#e06c75 · Strings, PDF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#e5c07b;"></div><div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#e5c07b · JS badge</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#98c379;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#98c379 · JSON, booleans</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#56b6c2;"></div><div class="swatch-info"><div class="swatch-name">Teal</div><div class="swatch-hex">#56b6c2 · Type names</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#abb2bf;"></div><div class="swatch-info"><div class="swatch-name">Comment</div><div class="swatch-hex">#abb2bf · Comments, MD</div></div></div>
+    </div>
+  </section>
+
+  <!-- ── Type Scale Table ───────────────────────────────────── -->
+  <section>
+    <div class="section-label">Full Type Scale Reference</div>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Font</th>
+            <th>Size</th>
+            <th>Weight</th>
+            <th>Line Height</th>
+            <th>Tracking</th>
+            <th>Color</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Display XL</td><td>Mono</td><td>clamp(64–120px)</td><td>700</td><td>0.92</td><td>-0.03em</td><td>#1a1a1a</td><td>Hero text</td></tr>
+          <tr><td>Display</td><td>Mono</td><td>36px</td><td>700</td><td>1.15</td><td>-0.02em</td><td>#1a1a1a</td><td>Section hero</td></tr>
+          <tr><td>H1</td><td>Mono</td><td>28px</td><td>700</td><td>1.15</td><td>-0.01em</td><td>#1a1a1a / #e8e8e8</td><td>Page title</td></tr>
+          <tr><td>H2</td><td>Mono</td><td>18px</td><td>600</td><td>1.2</td><td>0</td><td>#1a1a1a / #e8e8e8</td><td>Section heading</td></tr>
+          <tr><td>H3</td><td>Mono</td><td>16px</td><td>600</td><td>1.4</td><td>0</td><td>#333 / #d4d4d4</td><td>Sub-section</td></tr>
+          <tr><td>H4</td><td>Mono</td><td>14px</td><td>600</td><td>1.4</td><td>0</td><td>#333 / #aaa</td><td>Card label</td></tr>
+          <tr><td>H5</td><td>Mono</td><td>13px</td><td>600</td><td>1.4</td><td>0</td><td>#555 / #888</td><td>Tertiary label</td></tr>
+          <tr><td>T.body</td><td>Mono</td><td>16px</td><td>400</td><td>1.4</td><td>0</td><td>#333</td><td>Body, light bg</td></tr>
+          <tr><td>T.small</td><td>Mono</td><td>15px</td><td>400</td><td>1.4</td><td>0</td><td>#555</td><td>Secondary, light bg</td></tr>
+          <tr><td>Body Dark</td><td>Mono</td><td>15px</td><td>400</td><td>1.4</td><td>0</td><td>#d1d5dc</td><td>Work preview</td></tr>
+          <tr><td>Body Dark Alt</td><td>Mono</td><td>15px</td><td>400</td><td>1.4</td><td>0</td><td>#f1f1f1</td><td>About preview</td></tr>
+          <tr><td>T.label</td><td>Mono</td><td>12px</td><td>600</td><td>—</td><td>0.08em</td><td>#888</td><td>Section labels</td></tr>
+          <tr><td>Code editor</td><td>Mono</td><td>12.5px</td><td>400</td><td>1.6*</td><td>0</td><td>#d4d4d4</td><td>Left panel code</td></tr>
+          <tr><td>Tab label</td><td>Mono</td><td>12px</td><td>400</td><td>—</td><td>0</td><td>#d4d4d4 / #969696</td><td>Editor tabs</td></tr>
+          <tr><td>Status bar</td><td>Inter</td><td>11px</td><td>400</td><td>—</td><td>0</td><td>rgba(255,255,255,0.9)</td><td>Status bar</td></tr>
+          <tr><td>Title bar</td><td>Inter</td><td>11.5px</td><td>400</td><td>—</td><td>0</td><td>#9d9d9d</td><td>Window title</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px; font-family:var(--mono); font-size:11px; color:#aaa; border-top:1px solid #eee;">
+        * Code editor line-height 1.6 is intentional for readability at 12.5px — exception to 1.45 ceiling.
+        Inter is used only for UI chrome (status bar, title bar, buttons). All content uses JetBrains Mono.
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /panel-colors -->
+
+  <div class="tab-panel" id="panel-buttons">
+  <!-- ── Buttons ───────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Buttons</div>
+
+    <!-- Base spec -->
+    <div class="card" style="margin-bottom:24px; padding:0; overflow:hidden;">
+      <table>
+        <thead><tr><th colspan="2">Base .btn — Shared Properties</th></tr></thead>
+        <tbody>
+          <tr><td>Padding</td><td><code>11px 24px</code></td></tr>
+          <tr><td>Border radius</td><td><code>4px</code></td></tr>
+          <tr><td>Font family</td><td><code>Inter</code>, system-ui, sans-serif</td></tr>
+          <tr><td>Font size</td><td><code>14px</code></td></tr>
+          <tr><td>Font weight</td><td><code>600</code></td></tr>
+          <tr><td>Letter spacing</td><td><code>-0.01em</code></td></tr>
+          <tr><td>Transition</td><td>background, color, border-color, opacity — <code>150ms</code> ease</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+
+      <!-- Primary -->
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Primary — Filled</div>
+        <div style="background:#1e1e1e; border-radius:8px; padding:28px; display:flex; flex-direction:column; gap:16px;">
+
+          <!-- Default -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Default</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:600; letter-spacing:-0.01em; cursor:pointer; border:1px solid transparent; background:#e8e8e8; color:#111; text-decoration:none; white-space:nowrap;">Open to work</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg #e8e8e8 · color #111</div>
+          </div>
+
+          <!-- Hover -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Hover</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:600; letter-spacing:-0.01em; cursor:pointer; border:1px solid transparent; background:#fff; color:#111; white-space:nowrap;">Open to work</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg #fff · color #111</div>
+          </div>
+
+          <!-- Active -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Active / Pressed</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:600; letter-spacing:-0.01em; cursor:pointer; border:1px solid transparent; background:#ccc; color:#111; white-space:nowrap;">Open to work</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg #ccc · color #111</div>
+          </div>
+
+          <!-- Focus -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Focus</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:600; letter-spacing:-0.01em; cursor:pointer; border:1px solid transparent; background:#e8e8e8; color:#111; white-space:nowrap; outline:2px solid #d4a96a; outline-offset:3px;">Open to work</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">outline 2px solid #d4a96a · offset 3px</div>
+          </div>
+
+          <!-- Disabled -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Disabled</div>
+            <button disabled style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:600; letter-spacing:-0.01em; cursor:not-allowed; border:1px solid transparent; background:#3a3a3a; color:#666; white-space:nowrap; opacity:1;">Open to work</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg #3a3a3a · color #666</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Secondary -->
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Secondary — Ghost</div>
+        <div style="background:#1e1e1e; border-radius:8px; padding:28px; display:flex; flex-direction:column; gap:16px;">
+
+          <!-- Default -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Default</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:500; letter-spacing:-0.01em; cursor:pointer; background:transparent; color:#888; border:1px solid #333; white-space:nowrap;">View resume</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg transparent · color #888 · border #333</div>
+          </div>
+
+          <!-- Hover -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Hover</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:500; letter-spacing:-0.01em; cursor:pointer; background:transparent; color:#ccc; border:1px solid #666; white-space:nowrap;">View resume</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">color #ccc · border #666</div>
+          </div>
+
+          <!-- Active -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Active / Pressed</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:500; letter-spacing:-0.01em; cursor:pointer; background:rgba(255,255,255,0.04); color:#e8e8e8; border:1px solid #888; white-space:nowrap;">View resume</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">bg rgba(255,255,255,0.04) · color #e8e8e8 · border #888</div>
+          </div>
+
+          <!-- Focus -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Focus</div>
+            <button style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:500; letter-spacing:-0.01em; cursor:pointer; background:transparent; color:#888; border:1px solid #333; white-space:nowrap; outline:2px solid #d4a96a; outline-offset:3px;">View resume</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">outline 2px solid #d4a96a · offset 3px</div>
+          </div>
+
+          <!-- Disabled -->
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-bottom:8px;">Disabled</div>
+            <button disabled style="display:inline-flex; align-items:center; justify-content:center; padding:11px 24px; border-radius:4px; font-size:14px; font-family:'Inter',system-ui,sans-serif; font-weight:500; letter-spacing:-0.01em; cursor:not-allowed; background:transparent; color:#444; border:1px solid #2a2a2a; white-space:nowrap; opacity:1;">View resume</button>
+            <div style="font-family:var(--mono); font-size:11px; color:#555; margin-top:8px;">color #444 · border #2a2a2a</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </div><!-- /panel-buttons -->
+
+  <div class="tab-panel" id="panel-spacing">
+  <!-- ── Spacing ───────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Spacing Scale — Base Unit: 4px</div>
+
+    <!-- Scale visualization -->
+    <div class="card" style="margin-bottom:24px;">
+      <div style="font-family:var(--mono); font-size:12px; color:#888; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:20px;">Visual Scale</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">4px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:4px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Tight gap · dot/badge nudge</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">6px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:6px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Traffic light gap · tab icon gap</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">8px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:8px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Inline element gap · chip padding</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">12px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:12px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Small padding · line number pad</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">14px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:14px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Tab horizontal padding</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">16px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:16px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Standard margin · section gap</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">20px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:20px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Paragraph margin-bottom · card inner</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">24px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:24px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Card padding · section gap</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">32px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:32px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Large section gap · contact block</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">48px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:48px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">T.pad vertical · preview panel</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">52px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:52px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">T.pad horizontal · preview panel</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:80px; font-family:var(--mono); font-size:11px; color:#888; text-align:right; flex-shrink:0;">64px</div>
+          <div style="height:20px; background:#d4a96a; border-radius:2px; width:64px;"></div>
+          <div style="font-family:var(--mono); font-size:11px; color:#aaa;">Large section separation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tokens + Patterns side by side -->
+    <div class="two-col" style="margin-bottom:24px;">
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Component Tokens</div>
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td><code>T.pad</code></td><td>48px 52px</td><td>Preview panel padding</td></tr>
+              <tr><td><code>T.maxW</code></td><td>65ch</td><td>Max prose line length</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Common Flex Gaps</div>
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Context</th><th>Gap</th></tr></thead>
+            <tbody>
+              <tr><td>Traffic light dots</td><td>6px</td></tr>
+              <tr><td>Tab icon + filename</td><td>7px</td></tr>
+              <tr><td>Bullet dot + text</td><td>8px</td></tr>
+              <tr><td>Tool chips</td><td>10px</td></tr>
+              <tr><td>Contact items</td><td>16px</td></tr>
+              <tr><td>Avatar + name</td><td>24px</td></tr>
+              <tr><td>Work cards (vertical)</td><td>24px</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Padding patterns + Border radius side by side -->
+    <div class="two-col">
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Margin &amp; Padding Patterns</div>
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Context</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Paragraph spacing</td><td>20px bottom</td></tr>
+              <tr><td>Section heading gap</td><td>16px bottom</td></tr>
+              <tr><td>Resume section gap</td><td>32px bottom</td></tr>
+              <tr><td>Card inner padding</td><td>20px 24px</td></tr>
+              <tr><td>Work preview outer</td><td>24px 48px</td></tr>
+              <tr><td>Preview panels</td><td>48px 52px</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; color:#aaa; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Border Radius</div>
+        <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; background:#d4a96a; border-radius:3px; flex-shrink:0;"></div>
+            <div><div style="font-family:var(--mono); font-size:13px; font-weight:600; color:#1a1a1a;">3px — XS</div><div style="font-family:var(--mono); font-size:11px; color:#888; margin-top:2px;">Scrollbar thumb</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; background:#d4a96a; border-radius:4px; flex-shrink:0;"></div>
+            <div><div style="font-family:var(--mono); font-size:13px; font-weight:600; color:#1a1a1a;">4px — SM</div><div style="font-family:var(--mono); font-size:11px; color:#888; margin-top:2px;">Address bar · inline chips</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; background:#d4a96a; border-radius:6px; flex-shrink:0;"></div>
+            <div><div style="font-family:var(--mono); font-size:13px; font-weight:600; color:#1a1a1a;">6px — MD</div><div style="font-family:var(--mono); font-size:11px; color:#888; margin-top:2px;">Buttons · profile photo · tags</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; background:#d4a96a; border-radius:8px; flex-shrink:0;"></div>
+            <div><div style="font-family:var(--mono); font-size:13px; font-weight:600; color:#1a1a1a;">8px — LG</div><div style="font-family:var(--mono); font-size:11px; color:#888; margin-top:2px;">Cards · panels</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; background:#d4a96a; border-radius:12px; flex-shrink:0;"></div>
+            <div><div style="font-family:var(--mono); font-size:13px; font-weight:600; color:#1a1a1a;">12px — XL</div><div style="font-family:var(--mono); font-size:11px; color:#888; margin-top:2px;">Editor window · preview frame</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /panel-spacing -->
+
+  <div class="tab-panel" id="panel-rules">
+  <!-- ── Rules ──────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Practical Typography Rules</div>
+    <div class="card">
+      <div style="display:flex; flex-direction:column; gap:12px; font-family:var(--mono); font-size:14px; line-height:1.5; color:#333;">
+        <div>✓ &nbsp;<strong>Body font-size:</strong> 15–16px minimum. Never below 15px for prose.</div>
+        <div>✓ &nbsp;<strong>Line-height:</strong> 1.2–1.45 for body text. Display/H1 = 1.15. Never exceed 1.45 for body.</div>
+        <div>✓ &nbsp;<strong>All-caps tracking:</strong> 0.08em on T.label. Never add letter-spacing to normal lowercase text.</div>
+        <div>✓ &nbsp;<strong>Text color:</strong> Never use pure #000 or #fff. Min #888 for small text on dark backgrounds.</div>
+        <div>✓ &nbsp;<strong>Heading hierarchy:</strong> Max 3 distinct sizes in any single view.</div>
+        <div>✓ &nbsp;<strong>Font consistency:</strong> T.mono for all preview panels and code. T.font for chrome only.</div>
+        <div>✓ &nbsp;<strong>Max line length:</strong> 65ch (T.maxW) for all prose blocks.</div>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /panel-rules -->
+
+  <script>
+    const PANELS = {
+      typography: 'panel-typography',
+      colors:     'panel-colors',
+      buttons:    'panel-buttons',
+      spacing:    'panel-spacing',
+      rules:      'panel-rules',
+    };
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tab);
+      });
+      Object.entries(PANELS).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', key === tab);
+      });
+      window.scrollTo({ top: 0 });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+  </script>
+
+</body>
+</html>
