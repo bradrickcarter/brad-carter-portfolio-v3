@@ -214,7 +214,7 @@ export function HomePreview({ openFile }) {
   useEffect(() => {
     if (_homeLoaded) return;
     const t1 = setTimeout(() => setPhase(1), 400);
-    const t2 = setTimeout(() => { setPhase(2); _homeLoaded = true; }, 6000 + Math.random() * 1000);
+    const t2 = setTimeout(() => { setPhase(2); _homeLoaded = true; }, 2000);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
