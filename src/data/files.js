@@ -108,7 +108,7 @@ export const FILES = {
       ["pct", "    {"],
       ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Senior Product Designer"', "pct", ","],
       ["pct", "      ", "prop", "company", "pct", ": ", "str", '"Slalom"', "pct", ","],
-      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2011 – 2026"', "pct", ","],
+      ["pct", "      ", "prop", "years", "pct", ":   ", "str", '"2015 – 2026"', "pct", ","],
       ["pct", "    },"],
       ["pct", "    {"],
       ["pct", "      ", "prop", "role", "pct", ":    ", "str", '"Mobile Application Architect"', "pct", ","],

@@ -481,7 +481,7 @@ export function AboutPreview() {
     "The transition to product design felt natural, and having a development background made me a better designer from day one. I knew how the sausage was made — which meant I could have real conversations with engineers, push back when something was technically unnecessary, and find solutions that were both elegant and buildable. I wasn't designing in a vacuum.",
     "That technical instinct never left. Even when it's out of scope, I've always brought a level of fit and finish to my work that goes beyond static files. I test my designs in code because that's where you find out what's actually true — interactions that look great in Figma can feel completely wrong in the browser, and I'd rather find that out before engineering does. It's also where the fun is. Interaction design is hard to feel in a static mockup. Motion, timing, the way something responds when you tap it — you have to build it to know if it works. And exploring design solutions in code lets me move fast and go places a design tool won't take you.",
     "These days I've leaned hard into AI tools to accelerate that process even further. I can generate and test multiple design directions in the time it used to take to build one — low risk, high speed, and a much shorter path from idea to something you can actually react to. It's changed how I work, and honestly, it's made the work more fun.",
-    "Eleven years in, I'm still just trying to build things I'm proud of.",
+    "Fifteen years in, I'm still just trying to build things I'm proud of.",
   ];
   return (
     <div style={{ padding: isMobile ? "24px 20px" : T.pad, fontFamily: T.mono, maxWidth: "68ch" }}>
@@ -555,7 +555,7 @@ export function ContactPreview() {
       {[
         ["📮", "Email", "brad@bradcarter.design", "mailto:brad@bradcarter.design"],
         ["🌐", "Website", "bradcarter.design", "https://bradcarter.design"],
-        ["🔗", "LinkedIn", "brad-carter-work", "https://linkedin.com/in/brad-carter-work"],
+        ["🔗", "LinkedIn", "brad-carter-work", "https://www.linkedin.com/in/brad-carter-work"],
       ].map(([icon, label, val, href]) => (
         <a
           key={label}
@@ -593,9 +593,8 @@ export function ResumePreview() {
       <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: "#e8e8e8", marginBottom: 4 }}>Brad Carter</h1>
       <p style={{ fontSize: 16, color: "#aaa", marginBottom: 16, lineHeight: 1.4 }}>Senior Product Designer · DFW, TX</p>
       <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
-        {["brad@bradcarter.design", "bradcarter.design", "brad-carter-work"].map((t) => (
-          <span key={t} style={{ fontSize: 13, color: "#61afef", fontFamily: T.mono }}>{t}</span>
-        ))}
+        <a href="mailto:brad@bradcarter.design" style={{ fontSize: 13, color: "#61afef", fontFamily: T.mono, textDecoration: "none" }} onMouseEnter={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseLeave={(e) => e.currentTarget.style.textDecoration = "none"}>brad@bradcarter.design</a>
+        <a href="https://www.linkedin.com/in/brad-carter-work" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: "#61afef", fontFamily: T.mono, textDecoration: "none" }} onMouseEnter={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseLeave={(e) => e.currentTarget.style.textDecoration = "none"}>LinkedIn: brad-carter-work</a>
       </div>
       <div style={{ ...T.label, color: "#555", marginBottom: 16, fontFamily: T.mono, paddingBottom: 8, borderBottom: "1px solid #2a2a2a" }}>Experience</div>
       {[
