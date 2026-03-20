@@ -516,6 +516,7 @@ export function WorkPreview() {
       { type: "video", src: "/manage-medications.mp4", label: "Manage Medications" },
     ]},
     { tag: "Healthcare · Inventory", tagColor: "#d4a96a", title: "AllyIQ", desc: "Real-time inventory platform for retina practices. Replaced disconnected tools, closed billing gaps, and flagged dispensing risks.", role: "Design Lead", media: [
+      { type: "video", src: "/allyiq-restock.mp4", label: "AllyIQ — Restock" },
       { type: "image", src: "/ally-placeholder.png" },
     ]},
   ];
